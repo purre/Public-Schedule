@@ -1,0 +1,303 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2009 sp1 (http://www.altova.com) by Purre Persson (TV4 AB) -->
+<!--Document developed by SVT and TV4 2009-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://common.tv.se/content/v2_1" targetNamespace="http://common.tv.se/content/v2_1" elementFormDefault="qualified" attributeFormDefault="unqualified" version="2.1">
+	<xs:element name="content" type="contentType">
+		<xs:annotation>
+			<xs:documentation>Root element for content object</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="contentType">
+		<xs:sequence>
+			<xs:element name="contentId" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>unique id for content, should include provider name</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="seriesId" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>id for series, not unique</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="seasonNumber" type="xs:long" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>if available, the no of the season, start with 1</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="episodeNumber" type="xs:long" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>episode number in this content, could be 0</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="numberOfEpisodes" type="xs:long" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>no of episodes in this content, could be 0</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="productionYear" minOccurs="0">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:pattern value="[1-2][0-9][0-9][0-9]"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="countryOfOriginList" type="countryListType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>list of production countries</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="titleList" type="titleListType">
+				<xs:annotation>
+					<xs:documentation>title list for content, limited length, see type. At least one occurence for swedish language (normally) should occur</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="seriesDescriptionList" type="seriesDescriptionListType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>description list for series, limited length, see type</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="shortDescriptionList" type="shortDescriptionListType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>short description list for content, limited length, see type</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="longDescriptionList" type="longDescriptionListType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>same as short description list, but longer limited length, see type</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="dvbGenre" type="dvbGenreType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>dvb genres, two numbers between 0-15</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="keywordList" type="keywordListType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>list of keywords for the content, should be single words, and consistent within each provider</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="creditList" type="creditListType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>list of actors, producers etc. should be consistent within each provider</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="mediaList" type="mediaListType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>list of content related media such as images and weblinks</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="themeReference" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>This is for usage for the graphical presentation of the content in for instance a VOD shop.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="categoryList" type="categoryListType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Category path expression</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="regionalContent" type="xs:boolean" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>true indicates regional content</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="parentalRating" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Parental rating 3-18y</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:long">
+						<xs:minInclusive value="3"/>
+						<xs:maxInclusive value="18"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="timestamp" type="xs:dateTime" use="required">
+			<xs:annotation>
+				<xs:documentation>Timestamp when document is created</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="titleListType">
+		<xs:sequence>
+			<xs:element name="title" type="titleType" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="shortDescriptionListType">
+		<xs:sequence>
+			<xs:element name="shortDescription" type="shortDescriptionType" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="longDescriptionListType">
+		<xs:sequence>
+			<xs:element name="longDescription" type="longDescriptionType" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="seriesDescriptionListType">
+		<xs:sequence>
+			<xs:element name="seriesDescription" type="descriptionType" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="keywordListType">
+		<xs:sequence>
+			<xs:element name="keyword" type="keywordType" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="keywordType">
+		<xs:simpleContent>
+			<xs:extension base="textType">
+				<xs:attribute name="level" type="xs:long"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType name="titleType">
+		<xs:simpleContent>
+			<xs:restriction base="textType">
+				<xs:maxLength value="40"/>
+			</xs:restriction>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType name="shortDescriptionType">
+		<xs:simpleContent>
+			<xs:restriction base="textType">
+				<xs:maxLength value="120"/>
+			</xs:restriction>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType name="longDescriptionType">
+		<xs:simpleContent>
+			<xs:extension base="descriptionType">
+				<xs:attribute name="shortDescriptionIncluded" type="xs:boolean"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType name="descriptionType">
+		<xs:simpleContent>
+			<xs:restriction base="textType">
+				<xs:maxLength value="1000"/>
+			</xs:restriction>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType name="textType">
+		<xs:simpleContent>
+			<xs:extension base="xs:string">
+				<xs:attribute name="language" type="xs:language">
+					<xs:annotation>
+						<xs:documentation>code in ISO 639-2</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType name="countryListType">
+		<xs:sequence>
+			<xs:element name="country" type="xs:string" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>code in ISO 3166-1-alpha-2</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="dvbGenreType">
+		<xs:sequence>
+			<xs:element name="nibble1" type="dvbGenreNibbleType"/>
+			<xs:element name="nibble2" type="dvbGenreNibbleType" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="dvbGenreNibbleType">
+		<xs:restriction base="xs:int">
+			<xs:minInclusive value="0"/>
+			<xs:maxInclusive value="15"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="creditListType">
+		<xs:sequence>
+			<xs:element name="credit" type="creditType" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="creditType">
+		<xs:sequence>
+			<xs:element name="name" type="xs:string"/>
+			<xs:element name="rolename" type="xs:string" minOccurs="0"/>
+			<xs:element name="function">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="director"/>
+						<xs:enumeration value="actor"/>
+						<xs:enumeration value="guest"/>
+						<xs:enumeration value="host"/>
+						<xs:enumeration value="artist"/>
+						<xs:enumeration value="narrator"/>
+						<xs:enumeration value="other"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="mediaType">
+		<xs:simpleContent>
+			<xs:extension base="xs:string">
+				<xs:attribute name="refType">
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:enumeration value="weblink"/>
+							<xs:enumeration value="image"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:attribute>
+				<xs:attribute name="level" type="xs:long">
+					<xs:annotation>
+						<xs:documentation>lower level means higher importance</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType name="mediaListType">
+		<xs:sequence>
+			<xs:element name="media" type="mediaType" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="categoryListType">
+		<xs:sequence>
+			<xs:element name="category" minOccurs="0" maxOccurs="unbounded">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="treeNode" minOccurs="0" maxOccurs="unbounded">
+							<xs:annotation>
+								<xs:documentation>element in a category tree</xs:documentation>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:simpleContent>
+									<xs:extension base="xs:string">
+										<xs:attribute name="order" type="xs:long">
+											<xs:annotation>
+												<xs:documentation>position in category tree</xs:documentation>
+											</xs:annotation>
+										</xs:attribute>
+									</xs:extension>
+								</xs:simpleContent>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+					<xs:attribute name="level" type="xs:long">
+						<xs:annotation>
+							<xs:documentation>importance of category</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<!-- types -->
+	<xs:complexType name="contentListType">
+		<xs:sequence>
+			<xs:element name="content" type="contentType" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>content for this event, optional. if not set contentIdRef must be set</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2009 sp1 (http://www.altova.com) by Purre Persson (TV4 AB) -->
+<!--Document developed by SVT and TV4 2009-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:content="http://common.tv.se/content/v2_1" xmlns:event="http://common.tv.se/event/v2_1" xmlns:material="http://common.tv.se/material/v2_1" xmlns="http://common.tv.se/schedule/v2_1" targetNamespace="http://common.tv.se/schedule/v2_1" elementFormDefault="qualified" attributeFormDefault="unqualified" version="2.1">
+	<xs:import namespace="http://common.tv.se/content/v2_1" schemaLocation="content.xsd"/>
+	<xs:import namespace="http://common.tv.se/event/v2_1" schemaLocation="event.xsd"/>
+	<xs:import namespace="http://common.tv.se/material/v2_1" schemaLocation="material.xsd"/>
+	<xs:element name="schedule">
+		<xs:annotation>
+			<xs:documentation>root node of schedule, always complete</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="from" type="xs:dateTime">
+					<xs:annotation>
+						<xs:documentation>Start dateTime from which the events in this document occur</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="to" type="xs:dateTime">
+					<xs:annotation>
+						<xs:documentation>End dateTime from which the events in this document occur</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="providerId" type="xs:string">
+					<xs:annotation>
+						<xs:documentation>id for the provider, could be for example 'se.svt' or 'se.tv4'</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="contentList" type="content:contentListType" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>content list for the document, could be 0 entries which would indicate no events for this period</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="materialList" type="material:materialListType" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>material list for the document, could be 0 entries which would indicate no events for this period</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="eventList" type="event:eventListType" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>event list for the document, could be 0 entries which would indicate no events for this period</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+			</xs:sequence>
+			<xs:attribute name="timestamp" type="xs:dateTime" use="required">
+				<xs:annotation>
+					<xs:documentation>Timestamp when document is created</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>
