@@ -51,11 +51,6 @@
 					<xs:documentation>title list for content, limited length, see type. At least one occurence for swedish language (normally) should occur</xs:documentation>
 				</xs:annotation>
 			</xs:element>
-			<xs:element name="seriesDescriptionList" type="seriesDescriptionListType" minOccurs="0">
-				<xs:annotation>
-					<xs:documentation>description list for series, limited length, see type</xs:documentation>
-				</xs:annotation>
-			</xs:element>
 			<xs:element name="shortDescriptionList" type="shortDescriptionListType" minOccurs="0">
 				<xs:annotation>
 					<xs:documentation>short description list for content, limited length, see type</xs:documentation>
@@ -103,11 +98,11 @@
 			</xs:element>
 			<xs:element name="parentalRating" minOccurs="0">
 				<xs:annotation>
-					<xs:documentation>Parental rating 3-18y</xs:documentation>
+					<xs:documentation>Parental rating 0-18y</xs:documentation>
 				</xs:annotation>
 				<xs:simpleType>
 					<xs:restriction base="xs:long">
-						<xs:minInclusive value="3"/>
+						<xs:minInclusive value="0"/>
 						<xs:maxInclusive value="18"/>
 					</xs:restriction>
 				</xs:simpleType>
@@ -134,11 +129,6 @@
 			<xs:element name="longDescription" type="longDescriptionType" minOccurs="0" maxOccurs="unbounded"/>
 		</xs:sequence>
 	</xs:complexType>
-	<xs:complexType name="seriesDescriptionListType">
-		<xs:sequence>
-			<xs:element name="seriesDescription" type="descriptionType" minOccurs="0" maxOccurs="unbounded"/>
-		</xs:sequence>
-	</xs:complexType>
 	<xs:complexType name="keywordListType">
 		<xs:sequence>
 			<xs:element name="keyword" type="keywordType" minOccurs="0" maxOccurs="unbounded"/>
@@ -160,7 +150,7 @@
 	</xs:complexType>
 	<xs:complexType name="shortDescriptionType">
 		<xs:simpleContent>
-			<xs:restriction base="textType">
+			<xs:restriction base="descriptionType">
 				<xs:maxLength value="120"/>
 			</xs:restriction>
 		</xs:simpleContent>
@@ -187,9 +177,20 @@
 						<xs:documentation>code in ISO 639-2</xs:documentation>
 					</xs:annotation>
 				</xs:attribute>
+				<xs:attribute name="type" type="textTypeType"/>
 			</xs:extension>
 		</xs:simpleContent>
 	</xs:complexType>
+	<xs:simpleType name="textTypeType">
+		<xs:annotation>
+			<xs:documentation>type of entity the text is refered to, content if it is the content entity itself, series or season if the text refers to series or season</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="content"/>
+			<xs:enumeration value="series"/>
+			<xs:enumeration value="season"/>
+		</xs:restriction>
+	</xs:simpleType>
 	<xs:complexType name="countryListType">
 		<xs:sequence>
 			<xs:element name="country" type="xs:string" minOccurs="0" maxOccurs="unbounded">
@@ -284,6 +285,11 @@
 					<xs:attribute name="level" type="xs:long">
 						<xs:annotation>
 							<xs:documentation>importance of category</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+					<xs:attribute name="pattern" type="xs:string">
+						<xs:annotation>
+							<xs:documentation>pattern name, describes type of tree</xs:documentation>
 						</xs:annotation>
 					</xs:attribute>
 				</xs:complexType>
