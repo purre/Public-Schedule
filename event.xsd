@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- edited with XMLSpy v2005 sp1 U (http://www.xmlspy.com) by . (SVERIGES TELEVISION AB) -->
 <!--Document developed by SVT and TV4 2009-->
-<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://common.tv.se/event/v2_1" targetNamespace="http://common.tv.se/event/v2_1" elementFormDefault="qualified" attributeFormDefault="unqualified" version="2.1">
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://common.tv.se/event/v2_2" targetNamespace="http://common.tv.se/event/v2_2" elementFormDefault="qualified" attributeFormDefault="unqualified" version="2.2">
 	<xs:element name="event" type="eventType">
 		<xs:annotation>
 			<xs:documentation>root node of event</xs:documentation>
@@ -20,17 +20,17 @@
 					<xs:documentation>id for the current service or channel, could be for example 'se.svt.svt2', 'se.svt.play'  or 'se.tv4.tv4plus'</xs:documentation>
 				</xs:annotation>
 			</xs:element>
-			<xs:element name="startDateTime" type="xs:dateTime">
+			<xs:element name="startDateTime" type="timeType">
 				<xs:annotation>
 					<xs:documentation>start date and time for the event. in UTC timezone</xs:documentation>
 				</xs:annotation>
 			</xs:element>
-			<xs:element name="endDateTime" type="xs:dateTime">
+			<xs:element name="endDateTime" type="timeType">
 				<xs:annotation>
 					<xs:documentation>end date and time for the event. in UTC timezone</xs:documentation>
 				</xs:annotation>
 			</xs:element>
-			<xs:element name="duration" type="timecode">
+			<xs:element name="duration" type="durationType">
 				<xs:annotation>
 					<xs:documentation>duration for the event. in timecode format, for exmple 00:30:00:00</xs:documentation>
 				</xs:annotation>
@@ -116,4 +116,26 @@
 	<xs:simpleType name="timecode">
 		<xs:restriction base="xs:string"/>
 	</xs:simpleType>
+
+	<xs:complexType name="timeType">
+		<xs:sequence>
+			<xs:element name="time" type="xs:dateTime"></xs:element>
+			<xs:element name="type" type="timeTypeType"></xs:element>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:simpleType name="timeTypeType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="public"/>
+			<xs:enumeration value="planned"/>
+			<xs:enumeration value="asRun"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:complexType name="durationType">
+		<xs:sequence>
+			<xs:element name="duration" type="timecode"></xs:element>
+			<xs:element name="type" type="timeTypeType"></xs:element>
+		</xs:sequence>
+	</xs:complexType>
 </xs:schema>
