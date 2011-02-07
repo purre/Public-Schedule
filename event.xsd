@@ -12,44 +12,46 @@
 		<xs:sequence>
 			<xs:element name="eventId" type="xs:string">
 				<xs:annotation>
-					<xs:documentation>unique id for the event, should start with provider name, for example: 'se.svt.123456'</xs:documentation>
+					<xs:documentation>
+						unique id for the event, should start with
+						provider name, for example: 'se.svt.123456'
+					</xs:documentation>
 				</xs:annotation>
 			</xs:element>
 			<xs:element name="channelId" type="xs:string">
 				<xs:annotation>
-					<xs:documentation>id for the current service or channel, could be for example 'se.svt.svt2', 'se.svt.play'  or 'se.tv4.tv4plus'</xs:documentation>
+					<xs:documentation>
+						id for the current service or channel, could be
+						for example 'se.svt.svt2', 'se.svt.play' or
+						'se.tv4.tv4plus'
+					</xs:documentation>
 				</xs:annotation>
-			</xs:element>
-			<xs:element name="startDateTime" type="timeType">
-				<xs:annotation>
-					<xs:documentation>start date and time for the event. in UTC timezone</xs:documentation>
-				</xs:annotation>
-			</xs:element>
-			<xs:element name="endDateTime" type="timeType">
-				<xs:annotation>
-					<xs:documentation>end date and time for the event. in UTC timezone</xs:documentation>
-				</xs:annotation>
-			</xs:element>
-			<xs:element name="duration" type="durationType">
-				<xs:annotation>
-					<xs:documentation>duration for the event. in timecode format, for exmple 00:30:00:00</xs:documentation>
-				</xs:annotation>
-			</xs:element>
+			</xs:element>
 			<xs:element name="rerun" type="xs:boolean">
 				<xs:annotation>
-					<xs:documentation>indicates if this is a rerun, the rules for decision could is set by the provider and could be different between providers</xs:documentation>
+					<xs:documentation>
+						indicates if this is a rerun, the rules for
+						decision could is set by the provider and could
+						be different between providers
+					</xs:documentation>
 				</xs:annotation>
 			</xs:element>
 			<xs:element name="live" type="xs:boolean">
 				<xs:annotation>
-					<xs:documentation>indicates if this event is live</xs:documentation>
+					<xs:documentation>
+						indicates if this event is live
+					</xs:documentation>
 				</xs:annotation>
 			</xs:element>
 			<xs:element name="hidden" type="xs:boolean" minOccurs="0">
 				<xs:annotation>
-					<xs:documentation>indicates if this event is hidden, i.e. if it should be public</xs:documentation>
+					<xs:documentation>
+						indicates if this event is hidden, i.e. if it
+						should be public
+					</xs:documentation>
 				</xs:annotation>
 			</xs:element>
+			<xs:element name="timeList" type="timeType" maxOccurs="unbounded" minOccurs="1"></xs:element>
 		</xs:sequence>
 	</xs:complexType>
 	<xs:complexType name="embeddedEventType">
@@ -119,9 +121,11 @@
 
 	<xs:complexType name="timeType">
 		<xs:sequence>
-			<xs:element name="time" type="xs:dateTime"></xs:element>
-			<xs:element name="type" type="timeTypeType"></xs:element>
-		</xs:sequence>
+			<xs:element name="startTime" type="xs:dateTime"></xs:element>
+            <xs:element name="endTime" type="xs:dateTime"></xs:element>
+            <xs:element name="duration" type="timecode"></xs:element>
+            <xs:element name="type" type="timeTypeType"></xs:element>
+        </xs:sequence>
 	</xs:complexType>
 
 	<xs:simpleType name="timeTypeType">
@@ -132,10 +136,4 @@
 		</xs:restriction>
 	</xs:simpleType>
 
-	<xs:complexType name="durationType">
-		<xs:sequence>
-			<xs:element name="duration" type="timecode"></xs:element>
-			<xs:element name="type" type="timeTypeType"></xs:element>
-		</xs:sequence>
-	</xs:complexType>
 </xs:schema>
