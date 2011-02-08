@@ -124,8 +124,8 @@
 			<xs:element name="startTime" type="xs:dateTime"/>
             <xs:element name="endTime" type="xs:dateTime"/>
             <xs:element name="duration" type="timecode"/>
-            <xs:element name="type" type="timeTypeType" default="public"/>
         </xs:sequence>
+        <xs:attribute name="type" type="timeTypeType" default="public"/>
 	</xs:complexType>
 
 	<xs:simpleType name="timeTypeType">
