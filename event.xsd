@@ -121,10 +121,10 @@
 
 	<xs:complexType name="timeType">
 		<xs:sequence>
-			<xs:element name="startTime" type="xs:dateTime"></xs:element>
-            <xs:element name="endTime" type="xs:dateTime"></xs:element>
-            <xs:element name="duration" type="timecode"></xs:element>
-            <xs:element name="type" type="timeTypeType"></xs:element>
+			<xs:element name="startTime" type="xs:dateTime"/>
+            <xs:element name="endTime" type="xs:dateTime"/>
+            <xs:element name="duration" type="timecode"/>
+            <xs:element name="type" type="timeTypeType" default="public"/>
         </xs:sequence>
 	</xs:complexType>
 
