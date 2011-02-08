@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- edited with XMLSpy v2005 sp1 U (http://www.xmlspy.com) by . (SVERIGES TELEVISION AB) -->
-<!--Document developed by SVT and TV4 2009-->
-<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://common.tv.se/event/v2_2" targetNamespace="http://common.tv.se/event/v2_2" elementFormDefault="qualified" attributeFormDefault="unqualified" version="2.2">
+<!-- edited with XMLSpy v2005 sp1 U (http://www.xmlspy.com) by . (SVERIGES 
+	TELEVISION AB) -->
+<!--Document developed by SVT and TV4 2009 -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://common.tv.se/event/v2_2"
+	targetNamespace="http://common.tv.se/event/v2_2" elementFormDefault="qualified"
+	attributeFormDefault="unqualified" version="2.2">
 	<xs:element name="event" type="eventType">
 		<xs:annotation>
 			<xs:documentation>root node of event</xs:documentation>
@@ -26,13 +29,14 @@
 						'se.tv4.tv4plus'
 					</xs:documentation>
 				</xs:annotation>
-			</xs:element>
+			</xs:element>
 			<xs:element name="rerun" type="xs:boolean">
 				<xs:annotation>
 					<xs:documentation>
 						indicates if this is a rerun, the rules for
 						decision could is set by the provider and could
-						be different between providers
+						be different
+						between providers
 					</xs:documentation>
 				</xs:annotation>
 			</xs:element>
@@ -51,7 +55,8 @@
 					</xs:documentation>
 				</xs:annotation>
 			</xs:element>
-			<xs:element name="timeList" type="timeType" maxOccurs="unbounded" minOccurs="1"></xs:element>
+			<xs:element name="timeList" type="timeType" maxOccurs="unbounded"
+				minOccurs="1"></xs:element>
 		</xs:sequence>
 	</xs:complexType>
 	<xs:complexType name="embeddedEventType">
@@ -60,22 +65,29 @@
 				<xs:sequence>
 					<xs:element name="contentIdRef" type="xs:string">
 						<xs:annotation>
-							<xs:documentation>reference to contentId for this event for convinience as this could be obtained via materialIdRef</xs:documentation>
+							<xs:documentation>reference to contentId for this event for
+								convinience as this could be obtained via materialIdRef
+							</xs:documentation>
 						</xs:annotation>
 					</xs:element>
 					<xs:element name="materialIdRef" type="xs:string">
 						<xs:annotation>
-							<xs:documentation>reference to contentId for this event</xs:documentation>
+							<xs:documentation>reference to contentId for this event
+							</xs:documentation>
 						</xs:annotation>
 					</xs:element>
-					<xs:element name="previousEventList" type="basicEventListType" minOccurs="0">
+					<xs:element name="previousEventList" type="basicEventListType"
+						minOccurs="0">
 						<xs:annotation>
-							<xs:documentation>list if events that occured in time before current event, i.e. same contentId</xs:documentation>
+							<xs:documentation>list if events that occured in time before
+								current event, i.e. same contentId</xs:documentation>
 						</xs:annotation>
 					</xs:element>
-					<xs:element name="comingEventList" type="basicEventListType" minOccurs="0">
+					<xs:element name="comingEventList" type="basicEventListType"
+						minOccurs="0">
 						<xs:annotation>
-							<xs:documentation>list of events that occured in time after current event,  i.e. same contentId</xs:documentation>
+							<xs:documentation>list of events that occured in time after
+								current event, i.e. same contentId</xs:documentation>
 						</xs:annotation>
 					</xs:element>
 				</xs:sequence>
@@ -86,15 +98,18 @@
 		<xs:complexContent>
 			<xs:extension base="embeddedEventType">
 				<xs:sequence>
-					<xs:element name="embeddedEventList" type="embeddedEventListType" minOccurs="0">
+					<xs:element name="embeddedEventList" type="embeddedEventListType"
+						minOccurs="0">
 						<xs:annotation>
-							<xs:documentation>list of events that occurs as part of current event.</xs:documentation>
+							<xs:documentation>list of events that occurs as part of current
+								event.</xs:documentation>
 						</xs:annotation>
 					</xs:element>
 				</xs:sequence>
 				<xs:attribute name="timestamp" type="xs:dateTime" use="required">
 					<xs:annotation>
-						<xs:documentation>Timestamp when document is created</xs:documentation>
+						<xs:documentation>Timestamp when document is created
+						</xs:documentation>
 					</xs:annotation>
 				</xs:attribute>
 			</xs:extension>
@@ -102,37 +117,40 @@
 	</xs:complexType>
 	<xs:complexType name="embeddedEventListType">
 		<xs:sequence>
-			<xs:element name="event" type="embeddedEventType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="event" type="embeddedEventType"
+				minOccurs="0" maxOccurs="unbounded" />
 		</xs:sequence>
 	</xs:complexType>
 	<xs:complexType name="basicEventListType">
 		<xs:sequence>
-			<xs:element name="event" type="basicEventType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="event" type="basicEventType" minOccurs="0"
+				maxOccurs="unbounded" />
 		</xs:sequence>
 	</xs:complexType>
 	<xs:complexType name="eventListType">
 		<xs:sequence>
-			<xs:element name="event" type="eventType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="event" type="eventType" minOccurs="0"
+				maxOccurs="unbounded" />
 		</xs:sequence>
 	</xs:complexType>
 	<xs:simpleType name="timecode">
-		<xs:restriction base="xs:string"/>
+		<xs:restriction base="xs:string" />
 	</xs:simpleType>
 
 	<xs:complexType name="timeType">
 		<xs:sequence>
-			<xs:element name="startTime" type="xs:dateTime"/>
-            <xs:element name="endTime" type="xs:dateTime"/>
-            <xs:element name="duration" type="timecode"/>
-        </xs:sequence>
-        <xs:attribute name="type" type="timeTypeType" default="public"/>
+			<xs:element name="startTime" type="xs:dateTime" />
+			<xs:element name="endTime" type="xs:dateTime" />
+			<xs:element name="duration" type="timecode" />
+		</xs:sequence>
+		<xs:attribute name="type" type="timeTypeType" default="public" />
 	</xs:complexType>
 
 	<xs:simpleType name="timeTypeType">
 		<xs:restriction base="xs:string">
-			<xs:enumeration value="public"/>
-			<xs:enumeration value="planned"/>
-			<xs:enumeration value="asRun"/>
+			<xs:enumeration value="public" />
+			<xs:enumeration value="planned" />
+			<xs:enumeration value="asRun" />
 		</xs:restriction>
 	</xs:simpleType>
 
