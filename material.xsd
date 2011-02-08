@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- edited with XMLSpy v2005 sp1 U (http://www.xmlspy.com) by . (SVERIGES TELEVISION AB) -->
 <!--Document developed by SVT and TV4 2009-->
-<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://common.tv.se/material/v2_1" targetNamespace="http://common.tv.se/material/v2_1" elementFormDefault="qualified" attributeFormDefault="unqualified" version="2.1">
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://common.tv.se/material/v2_2" targetNamespace="http://common.tv.se/material/v2_2" elementFormDefault="qualified" attributeFormDefault="unqualified" version="2.2">
 	<xs:element name="material" type="materialType">
 		<xs:annotation>
 			<xs:documentation>Root element for material object</xs:documentation>
@@ -121,19 +121,20 @@
 		<xs:sequence>
 			<xs:element name="subtitle" type="subtitleType" minOccurs="0" maxOccurs="unbounded">
 				<xs:annotation>
-					<xs:documentation>type of subtitle, for example teletext</xs:documentation>
+					<xs:documentation>reference to a subtitle item, for example a teletext page or a subtitle file</xs:documentation>
 				</xs:annotation>
 			</xs:element>
 		</xs:sequence>
 	</xs:complexType>
 	<xs:complexType name="subtitleType">
 		<xs:simpleContent>
-			<xs:extension base="subtitleFormatType">
+			<xs:extension base="xs:string">
 				<xs:attribute name="language" type="xs:language">
 					<xs:annotation>
 						<xs:documentation>code in ISO 639-2</xs:documentation>
 					</xs:annotation>
 				</xs:attribute>
+				<xs:attribute name="format" type="subtitleFormatType"/>
 			</xs:extension>
 		</xs:simpleContent>
 	</xs:complexType>
@@ -165,7 +166,7 @@
 						</xs:restriction>
 					</xs:simpleType>
 				</xs:attribute>
-				<xs:attribute name="duration">
+				<xs:attribute name="duration" use="optional">
 					<xs:annotation>
 						<xs:documentation>duration in timecode for referenced material, example  00:00:00:00</xs:documentation>
 					</xs:annotation>
@@ -173,6 +174,15 @@
 						<xs:restriction base="xs:string"/>
 					</xs:simpleType>
 				</xs:attribute>
+				<xs:attribute name="bitrate" use="optional">
+					<xs:annotation>
+						<xs:documentation>if applicable, bitrate for the material in bps</xs:documentation>
+					</xs:annotation>
+					<xs:simpleType>
+						<xs:restriction base="xs:string"/>
+					</xs:simpleType>
+				</xs:attribute>
+				
 			</xs:extension>
 		</xs:simpleContent>
 	</xs:complexType>
