@@ -1,7 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- edited with XMLSpy v2005 sp1 U (http://www.xmlspy.com) by . (SVERIGES TELEVISION AB) -->
-<!--Document developed by SVT and TV4 2009-->
-<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://common.tv.se/material/v2_2" targetNamespace="http://common.tv.se/material/v2_2" elementFormDefault="qualified" attributeFormDefault="unqualified" version="2.2">
+<!--Document developed by SVT and TV4 2009, 2010, 2011-->
+<xs:schema 
+	xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+	xmlns="http://common.tv.se/material/v3_0" 
+	targetNamespace="http://common.tv.se/material/v3_0" 
+	elementFormDefault="qualified" 
+	attributeFormDefault="unqualified" 
+	version="3.0">
+	
 	<xs:element name="material" type="materialType">
 		<xs:annotation>
 			<xs:documentation>Root element for material object</xs:documentation>

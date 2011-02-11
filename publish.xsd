@@ -1,10 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- edited with XMLSpy v2009 sp1 (http://www.altova.com) by Purre Persson (TV4 AB) -->
-<!--Document developed by SVT and TV4 2009-->
-<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:content="http://common.tv.se/content/v2_2" xmlns:material="http://common.tv.se/material/v2_2" xmlns:event="http://common.tv.se/event/v2_2" xmlns="http://common.tv.se/publish/v2_3" targetNamespace="http://common.tv.se/publish/v2_3" elementFormDefault="qualified" attributeFormDefault="unqualified" version="2.3">
-	<xs:import namespace="http://common.tv.se/content/v2_2" schemaLocation="content.xsd"/>
-	<xs:import namespace="http://common.tv.se/material/v2_2" schemaLocation="material.xsd"/>
-	<xs:import namespace="http://common.tv.se/event/v2_2" schemaLocation="event.xsd"/>
+<!--Document developed by SVT and TV4 2009, 2010, 2011-->
+<xs:schema 
+	xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+	xmlns:content="http://common.tv.se/content/v3_0" 
+	xmlns:material="http://common.tv.se/material/v3_0" 
+	xmlns:event="http://common.tv.se/event/v3_0" 
+	xmlns="http://common.tv.se/publish/v3_0" 
+	targetNamespace="http://common.tv.se/publish/v3_0" 
+	elementFormDefault="qualified" 
+	attributeFormDefault="unqualified" 
+	version="3.0">
+	
+	<xs:import namespace="http://common.tv.se/content/v3_0" schemaLocation="content.xsd"/>
+	<xs:import namespace="http://common.tv.se/material/v3_0" schemaLocation="material.xsd"/>
+	<xs:import namespace="http://common.tv.se/event/v3_0" schemaLocation="event.xsd"/>
 	<xs:element name="publish">
 		<xs:annotation>
 			<xs:documentation>root node of publish</xs:documentation>
