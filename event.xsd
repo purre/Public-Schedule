@@ -1,13 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--Document developed by SVT and TV4 2009, 2010, 2011 -->
-<xs:schema 
-	xmlns:xs="http://www.w3.org/2001/XMLSchema" 
-	xmlns="http://common.tv.se/event/v3_0" 
-	targetNamespace="http://common.tv.se/event/v3_0" 
-	elementFormDefault="qualified" 
-	attributeFormDefault="unqualified" 
-	version="3.0">
-	
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://common.tv.se/event/v3_1" targetNamespace="http://common.tv.se/event/v3_1" elementFormDefault="qualified" attributeFormDefault="unqualified" version="3.1">
 	<xs:element name="event" type="eventType">
 		<xs:annotation>
 			<xs:documentation>root node of event</xs:documentation>
@@ -41,7 +34,12 @@
 					<xs:documentation>indicates if this event is hidden, i.e. if it should be public</xs:documentation>
 				</xs:annotation>
 			</xs:element>
-			<xs:element name="timeList" type="timeType" maxOccurs="unbounded"/>
+			<xs:element name="description" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>description for the event, should only contain description relative to the event only</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="timeList" type="timeListType" minOccurs="0"/>
 		</xs:sequence>
 	</xs:complexType>
 	<xs:complexType name="embeddedEventType">
@@ -108,6 +106,11 @@
 	<xs:simpleType name="timecode">
 		<xs:restriction base="xs:string"/>
 	</xs:simpleType>
+	<xs:complexType name="timeListType">
+		<xs:sequence>
+			<xs:element name="time" type="timeType" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
 	<xs:complexType name="timeType">
 		<xs:sequence>
 			<xs:element name="startTime" type="xs:dateTime"/>

@@ -1,13 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--Document developed by SVT and TV4 2009, 2010, 2011-->
-<xs:schema 
-	xmlns:xs="http://www.w3.org/2001/XMLSchema" 
-	xmlns="http://common.tv.se/material/v3_0" 
-	targetNamespace="http://common.tv.se/material/v3_0" 
-	elementFormDefault="qualified" 
-	attributeFormDefault="unqualified" 
-	version="3.0">
-	
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://common.tv.se/material/v3_1" targetNamespace="http://common.tv.se/material/v3_1" elementFormDefault="qualified" attributeFormDefault="unqualified" version="3.1">
 	<xs:element name="material" type="materialType">
 		<xs:annotation>
 			<xs:documentation>Root element for material object</xs:documentation>
@@ -188,7 +181,6 @@
 						<xs:restriction base="xs:string"/>
 					</xs:simpleType>
 				</xs:attribute>
-				
 			</xs:extension>
 		</xs:simpleContent>
 	</xs:complexType>
