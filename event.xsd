@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--Document developed by SVT and TV4 2009, 2010, 2011 -->
-<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://common.tv.se/event/v3_1" targetNamespace="http://common.tv.se/event/v3_1" elementFormDefault="qualified" attributeFormDefault="unqualified" version="3.1">
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://common.tv.se/event/v3_2" targetNamespace="http://common.tv.se/event/v3_2" elementFormDefault="qualified" attributeFormDefault="unqualified" version="3.2">
 	<xs:element name="event" type="eventType">
 		<xs:annotation>
 			<xs:documentation>root node of event</xs:documentation>
